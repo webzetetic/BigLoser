@@ -1,7 +1,7 @@
 # Biggest Loser App
 
-Administrator Interface
-Contestant Interface
+* Administrator Interface
+* Contestant Interface
 
 As an Administrator, I want to be able to:
 
