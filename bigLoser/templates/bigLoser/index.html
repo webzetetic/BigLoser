@@ -1,0 +1,9 @@
+{% if latest_weight_list %}
+	<ul>
+	{% for weight in latest_weight_list %}
+		<li><a href="/bigLoser/{{ weight.id }}/">{{ weight.current_weight }}</a></li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>No weights are available.</p>
+{% endif %}
