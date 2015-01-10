@@ -1,5 +1,16 @@
 # Biggest Loser App
 
+## Dev Notes
+
+Add to venv/bin/activate file to use SQLite for dev
+
+```
+DATABASE_URL="sqlite:////Users/thall/Projects/BigLoser/db.sqlite3"
+export DATABASE_URL
+```
+
+## Requirements
+
 * Administrator Interface
 * Contestant Interface
 
