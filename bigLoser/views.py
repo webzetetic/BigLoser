@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from bigLoser.models import Weight
+from django.views.generic.edit import CreateView
 
 # Create your views here.
 
@@ -11,5 +12,9 @@ def index(request):
 
 def detail(request, weight_id):
     return HttpResponse("The weight record is %s." % weight_id)
+
+class WeightCreate(CreateView):
+	model = Weight
+	fields = ['contestant','current_date','current_weight']
 
 
