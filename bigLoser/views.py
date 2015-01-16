@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from bigLoser.models import Weight
 from django.views.generic.edit import CreateView
+from django.core.urlresolvers import reverse_lazy
 
 # Create your views here.
 
@@ -16,5 +17,7 @@ def detail(request, weight_id):
 class WeightCreate(CreateView):
 	model = Weight
 	fields = ['contestant','current_date','current_weight']
+	success_url = reverse_lazy('index')
+
 
 
