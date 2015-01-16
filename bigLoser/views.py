@@ -15,8 +15,11 @@ def index(request):
 	context = {'latest_weight_list': latest_weight_list}
 	return render(request, 'bigLoser/index.html', context)
 
-def detail(request, weight_id):
-    return HttpResponse("The weight record is %s." % weight_id)
+def user_homepage(request, user_id):
+	latest_weight_list = Weight.objects.filter(contestant=user_id).order_by('-current_date')[:5]
+	user = User.objects.get(id=user_id)
+	context = {'latest_weight_list': latest_weight_list, 'user': user}
+	return render(request, 'bigLoser/user_homepage.html', context)
 
 class WeightCreate(CreateView):
 	model = Weight
