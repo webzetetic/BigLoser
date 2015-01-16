@@ -26,10 +26,10 @@ class WeightCreate(CreateView):
 	fields = ['contestant','current_date','current_weight']
 	success_url = reverse_lazy('index')
 
-def render_chart(request):
+def render_chart(request, user_id):
     if request.method == "GET":
         series_age = datetime.today() - timedelta(days=90)
-        contestant_id = User.objects.filter(username='admin')[0].id
+        contestant_id = user_id
         qset = Weight.objects\
         	.filter(current_date__gt=series_age, contestant__exact=contestant_id)\
         	.values("current_date", "current_weight")

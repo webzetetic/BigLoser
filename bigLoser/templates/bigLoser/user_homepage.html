@@ -13,7 +13,7 @@
 	{% endfor %}
 	</ul>
 
-<a href="{% url 'render_chart' %}">Progress Chart</a>
+<a href="{% url 'render_chart' user.id %}">Progress Chart</a>
 <br>
 
 {% else %}
