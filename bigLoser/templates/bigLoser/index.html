@@ -4,6 +4,7 @@
 		<li><a href="/bigLoser/{{ weight.id }}/">{{ weight.current_weight }}</a></li>
 	{% endfor %}
 	</ul>
+	<a href="{% url 'weight_add' %}">Add Weight</a>
 {% else %}
 	<p>No weights are available.</p>
 {% endif %}
