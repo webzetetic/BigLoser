@@ -25,15 +25,12 @@ class WeightCreate(CreateView):
 
 def render_chart(request):
     if request.method == "GET":
-
         series_age = datetime.today() - timedelta(days=90)
-
         contestant_id = User.objects.filter(username='admin')[0].id
-
-        qset = Weight.objects.filter(current_date__gt=series_age, contestant__exact=contestant_id).values("current_date", "current_weight")
-
-        weight_json = qset.to_json(labels={},
-                                 order=("current_date", "current_weight"))
-
-    	return render_to_response("bigLoser/weight_report.html", {"weight_data": weight_json}, context_instance=RequestContext(request))
-
+        qset = Weight.objects\
+        	.filter(current_date__gt=series_age, contestant__exact=contestant_id)\
+        	.values("current_date", "current_weight")
+        weight_json = qset.to_json(labels={},order=("current_date", "current_weight"))
+    	return render_to_response("bigLoser/weight_report.html", 
+    		{"weight_data": weight_json}, 
+    		context_instance=RequestContext(request))
