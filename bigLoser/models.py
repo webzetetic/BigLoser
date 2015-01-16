@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
 from django.conf import settings
+from django.db import models
+from gcharts import GChartsManager
 
 # Create your models here.
 
@@ -11,6 +13,7 @@ def gen_default_contestant():
 	return None
 
 class Weight(models.Model):
+    objects = GChartsManager()
     current_weight = models.IntegerField(default=0)
     current_date = models.DateTimeField('date published', default=datetime.now)
     contestant = models.ForeignKey(settings.AUTH_USER_MODEL,

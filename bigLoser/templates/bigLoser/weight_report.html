@@ -1,0 +1,24 @@
+{% load gcharts %}
+
+{% gcharts %}
+    <!-- Global options for all charts -->
+    options = {
+        width: 500,
+        height: 300
+    };
+
+    weight_opt = _clone(options);
+    weight_opt.title = "Weigh-ins";
+
+    {% options weight_opt %}
+        kind: "ColumnChart",
+        options: weight_opt,
+    {% endoptions %}
+
+    {% render "weight_chart" "weight_data" "weight_opt" %}
+
+{% endgcharts %}
+
+<div id="weight_chart">
+    <!-- container for weight_data chart -->
+</div>

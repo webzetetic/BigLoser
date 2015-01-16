@@ -35,6 +35,9 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
+GOOGLECHARTS_API = "1.1"
+GOOGLECHARTS_PACKAGES = ["corechart"]
+
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,6 +46,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bigLoser',
+    'gcharts',
 )
 
 MIDDLEWARE_CLASSES = (
