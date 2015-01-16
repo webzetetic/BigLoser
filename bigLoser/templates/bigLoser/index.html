@@ -12,10 +12,14 @@
 	{% endfor %}
 	</ul>
 
-	<a href="{% url 'weight_add' %}">Add Weight</a>
+<a href="{% url 'render_chart' %}">Progress Chart</a>
+<br>
 
 {% else %}
 	
 	<p>No weights are available.</p>
 
 {% endif %}
+
+
+<a href="{% url 'weight_add' %}">Add Weight</a>
