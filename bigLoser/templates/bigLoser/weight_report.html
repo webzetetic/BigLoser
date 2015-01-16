@@ -4,15 +4,16 @@
     <!-- Global options for all charts -->
     options = {
         width: 500,
-        height: 300
+        height: 300,
+        trendlines: { 0: {}},
+        title: "Weights"
     };
 
     weight_opt = _clone(options);
-    weight_opt.title = "Weigh-ins";
 
     {% options weight_opt %}
-        kind: "ColumnChart",
-        options: weight_opt,
+        kind: "ScatterChart",
+        options: weight_opt
     {% endoptions %}
 
     {% render "weight_chart" "weight_data" "weight_opt" %}

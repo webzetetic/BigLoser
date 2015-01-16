@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from datetime import timedelta, datetime
-from django.db.models import Count
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -28,11 +28,12 @@ def render_chart(request):
 
         series_age = datetime.today() - timedelta(days=90)
 
-        qset = Weight.objects.filter(current_date__gt=series_age).values("current_date").annotate(Count("id")).order_by()
+        contestant_id = User.objects.filter(username='admin')[0].id
 
-        weight_json = qset.to_json(labels={"id__count": "Weigh-ins", "current_date": "Date"},
-                                 order=("current_date", "id__count"), 
-                                 formatting={"id__count": "{0:d} weigh-ins"})
+        qset = Weight.objects.filter(current_date__gt=series_age, contestant__exact=contestant_id).values("current_date", "current_weight")
+
+        weight_json = qset.to_json(labels={},
+                                 order=("current_date", "current_weight"))
 
     	return render_to_response("bigLoser/weight_report.html", {"weight_data": weight_json}, context_instance=RequestContext(request))
 
