@@ -1,9 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponse
 from bigLoser.models import Weight
 from django.views.generic.edit import CreateView
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from datetime import timedelta, datetime
 from django.contrib.auth.models import User
@@ -11,9 +10,11 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def index(request):
-	latest_weight_list = Weight.objects.order_by('-current_date')[:5]
-	context = {'latest_weight_list': latest_weight_list}
-	return render(request, 'bigLoser/index.html', context)
+	print request.user
+	if request.user.is_authenticated():
+		return redirect('user_homepage', user_id=request.user.id)
+	else:
+		return redirect('bigLoser_login')
 
 def user_homepage(request, user_id):
 	latest_weight_list = Weight.objects.filter(contestant=user_id).order_by('-current_date')[:5]
