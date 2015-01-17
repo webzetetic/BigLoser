@@ -82,3 +82,7 @@ STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
+
+LOGIN_URL = 'bigLoser_login'
+LOGOUT_URL = 'bigLoser_logout'
+LOGIN_REDIRECT_URL = 'index'

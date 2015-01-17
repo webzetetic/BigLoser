@@ -1,22 +1,39 @@
 <h1>Biggest Loser</h1>
 
-{% if latest_weight_list %}
+{% if user.is_authenticated %}
+
+	<p>{{ user.username }} is logged in.</p>
+
+	{% if latest_weight_list %}
 	
-	<ul>
-	{% for weight in latest_weight_list %}
-		<li><ul>
-		<li>Contestant: {{ weight.contestant }}</li>
-		<li>Date: {{ weight.current_date }}</li>
-		<li>Weight: {{ weight.current_weight }}</li>
-		</ul></li>
-	{% endfor %}
-	</ul>
+		<ul>
+		{% for weight in latest_weight_list %}
+			<li><ul>
+			<li>Contestant: {{ weight.contestant }}</li>
+			<li>Date: {{ weight.current_date }}</li>
+			<li>Weight: {{ weight.current_weight }}</li>
+			</ul></li>
+		{% endfor %}
+		</ul>
+
+	{% else %}
+	
+		<p>No weights are available.</p>
+
+	{% endif %}
+
+
+	<a href="{% url 'weight_add' %}">Add Weight</a>
+
+	<form role="form" class="form-horizontal" method="post" action="{% url 'bigLoser_logout' %}">
+			{% csrf_token %}
+			{{ form }}
+			<input class="btn btn-primary" type="submit" value="Logout" />
+			<input type="hidden" name="next" value="{{ next }}" />
+		</form>
 
 {% else %}
-	
-	<p>No weights are available.</p>
+
+<a href="{% url 'bigLoser_login' %}">Login</a>
 
 {% endif %}
-
-
-<a href="{% url 'weight_add' %}">Add Weight</a>
