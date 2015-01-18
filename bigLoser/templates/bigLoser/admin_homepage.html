@@ -1,0 +1,23 @@
+<h1>Biggest Loser</h1>
+
+<h2>Welcome, Administrator!</h2>
+
+<br>
+
+<a href="{% url 'admin:index' %}">Admin Console</a>
+
+<br>
+
+<form role="form" class="form-horizontal" method="post" action="{% url 'contest_add' %}">
+			{% csrf_token %}
+			{{ form }}
+			<input class="btn btn-primary" type="submit" value="Create Contest" />
+			<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+<form role="form" class="form-horizontal" method="post" action="{% url 'bigLoser_logout' %}">
+			{% csrf_token %}
+			{{ form }}
+			<input class="btn btn-primary" type="submit" value="Logout" />
+			<input type="hidden" name="next" value="{{ next }}" />
+</form>

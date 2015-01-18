@@ -7,11 +7,10 @@ from django.template.context import RequestContext
 from datetime import timedelta, datetime
 from django.contrib.auth.models import User
 
-# Create your views here.
-
 def index(request):
-	print request.user
-	if request.user.is_authenticated():
+	if request.user.id == 1:
+		return redirect('admin_homepage')
+	elif request.user.is_authenticated():
 		return redirect('user_homepage', user_id=request.user.id)
 	else:
 		return redirect('bigLoser_login')
@@ -21,6 +20,9 @@ def user_homepage(request, user_id):
 	user = User.objects.get(id=user_id)
 	context = {'latest_weight_list': latest_weight_list, 'user': user}
 	return render(request, 'bigLoser/user_homepage.html', context)
+
+def admin_homepage(request):
+	return render(request, 'bigLoser/admin_homepage.html')
 
 class WeightCreate(CreateView):
 	model = Weight

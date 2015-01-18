@@ -21,6 +21,8 @@
 
 {% endif %}
 
+<br>
+
 <form role="form" class="form-horizontal" method="post" action="{% url 'weight_add' %}">
 			{% csrf_token %}
 			{{ form }}
