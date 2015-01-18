@@ -2,6 +2,12 @@
 
 ## Dev Notes
 
+Run this to sync db changes with Heroku:
+
+```
+heroku run python manage.py syncdb
+```
+
 Add to venv/bin/activate file to use SQLite for dev
 
 ```
