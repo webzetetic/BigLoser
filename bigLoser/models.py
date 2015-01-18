@@ -5,11 +5,11 @@ from django.conf import settings
 from gcharts import GChartsManager
 
 class Contest(models.Model):
-    contest_name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
     start_date = models.DateField()
     end_date = models.DateField()
     def __str__(self):              # __unicode__ on Python 2
-        return "%s" % (self.contest_name)
+        return "%s" % (self.name)
 
 class Contestant(models.Model):
     user = models.ForeignKey(User)

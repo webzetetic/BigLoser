@@ -27,6 +27,11 @@ class WeightCreate(CreateView):
 	fields = ['contestant','current_date','current_weight']
 	success_url = reverse_lazy('index')
 
+class ContestCreate(CreateView):
+	model = Contest
+	fields = ['name','start_date','end_date']
+	success_url = reverse_lazy('index')
+
 def render_chart(request, user_id):
     if request.method == "GET":
         series_age = datetime.today() - timedelta(days=90)
