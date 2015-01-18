@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponse
-from bigLoser.models import Weight
+from bigLoser.models import Weight, Contest, Contestant
 from django.views.generic.edit import CreateView
 from django.core.urlresolvers import reverse_lazy
 from django.template.context import RequestContext
