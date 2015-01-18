@@ -22,4 +22,20 @@ class Weight(models.Model):
     def __str__(self):              # __unicode__ on Python 2
         return self.current_date.strftime('%m/%d/%Y')+ ' ' + str(self.current_weight)
 
+class Contest(models.Model):
+    contest_name = models.CharField(max_length=50)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    def __str__(self):              # __unicode__ on Python 2
+        return "%s" % (self.contest_name)
+
+class Contestant(models.Model):
+    user = models.ForeignKey(User)
+    contest = models.ForeignKey(Contest)
+    target_weight = models.IntegerField(default=0)
+    def __str__(self):              # __unicode__ on Python 2
+        return "%s %s" % (self.user, self.contest)
+
+
+
 
