@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, render_to_response
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from bigLoser.models import Weight, Contest, Contestant
 from django.views.generic.edit import CreateView
 from django.core.urlresolvers import reverse_lazy
 from django.template.context import RequestContext
 from datetime import timedelta, datetime
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django.core.context_processors import csrf
 
 def index(request):
 	if request.user.id == 1:
@@ -14,6 +16,23 @@ def index(request):
 		return redirect('user_homepage', user_id=request.user.id)
 	else:
 		return redirect('bigLoser_login')
+
+def register_user(request):
+	if request.method == 'POST':
+		form = UserCreationForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('register_success')
+
+	args = {}
+	args.update(csrf(request))
+
+	args['form'] = UserCreationForm()
+
+	return render_to_response('register.html', args)
+
+def register_success(request):
+	return render_to_response('register_success.html')
 
 def user_homepage(request, user_id):
 	contestant_list = Contestant.objects.filter(user=user_id).order_by('contest')

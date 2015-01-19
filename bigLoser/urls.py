@@ -16,4 +16,6 @@ urlpatterns += patterns('django.contrib.auth.views',
     url(r'^$', views.index, name='index'),
 	url(r'^login/$', 'login',{'template_name': 'login.html'},name='bigLoser_login'),
 	url(r'^logout/$', 'logout',{'next_page': 'index'},name='bigLoser_logout'),
+	url(r'^register/$', views.register_user, name='register_user'),
+	url(r'^register_success/$', views.register_success, name='register_success'),
 )
