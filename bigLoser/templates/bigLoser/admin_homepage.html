@@ -8,16 +8,8 @@
 
 <br>
 
-<form role="form" class="form-horizontal" method="post" action="{% url 'contest_add' %}">
-			{% csrf_token %}
-			{{ form }}
-			<input class="btn btn-primary" type="submit" value="Create Contest" />
-			<input type="hidden" name="next" value="{{ next }}" />
-</form>
+<a href="{% url 'contest_add' %}">Create Contest</a>
 
-<form role="form" class="form-horizontal" method="post" action="{% url 'bigLoser_logout' %}">
-			{% csrf_token %}
-			{{ form }}
-			<input class="btn btn-primary" type="submit" value="Logout" />
-			<input type="hidden" name="next" value="{{ next }}" />
-</form>
+<br>
+
+<a href="{% url 'bigLoser_logout' %}">Logout</a>

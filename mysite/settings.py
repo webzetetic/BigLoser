@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'bigLoser',
     'gcharts',
+    'bootstrap3',
 )
 
 MIDDLEWARE_CLASSES = (

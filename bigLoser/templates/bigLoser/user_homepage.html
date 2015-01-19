@@ -18,9 +18,4 @@
 
 <br>
 
-<form role="form" class="form-horizontal" method="post" action="{% url 'bigLoser_logout' %}">
-			{% csrf_token %}
-			{{ form }}
-			<input class="btn btn-primary" type="submit" value="Logout" />
-			<input type="hidden" name="next" value="{{ next }}" />
-</form>
+<a href="{% url 'bigLoser_logout' %}">Logout</a>
