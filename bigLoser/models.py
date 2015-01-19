@@ -30,6 +30,13 @@ class Weight(models.Model):
     contestant = models.ForeignKey(Contestant,
     	unique_for_date="current_date",
     	default=gen_default_contestant)
+        
+    def goal_progress(self):
+        "Returns the progress toward goal weight."
+        initial_weight = Weight.objects.filter(contestant=self.contestant).order_by('current_date')[0].current_weight
+        progress = float(initial_weight - self.current_weight) / float(initial_weight - self.contestant.target_weight)
+        return progress
+
     def __str__(self):              # __unicode__ on Python 2
         return str(self.contestant.user) + ' weighed ' + str(self.current_weight) + ' on ' + self.current_date.strftime('%m/%d/%Y') 
 

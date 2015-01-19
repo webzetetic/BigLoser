@@ -1,0 +1,39 @@
+<h1>Biggest Loser</h1>
+
+<h2>Welcome, {{ user.first_name }}!</h2>
+
+{% if latest_weight_list %}
+	
+	<ul>
+	{% for weight in latest_weight_list %}
+		<li><ul>
+		<li>Date: {{ weight.current_date }}</li>
+		<li>Weight: {{ weight.current_weight }}</li>
+		<li>Progress: {{ weight.goal_progress }}</li>
+		</ul></li>
+	{% endfor %}
+	</ul>
+
+<a href="{% url 'render_chart' user.id %}">Progress Chart</a>
+
+{% else %}
+	
+	<p>No weights are available.</p>
+
+{% endif %}
+
+<br>
+
+<form role="form" class="form-horizontal" method="post" action="{% url 'weight_add' %}">
+			{% csrf_token %}
+			{{ form }}
+			<input class="btn btn-primary" type="submit" value="Add Weight" />
+			<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+<form role="form" class="form-horizontal" method="post" action="{% url 'bigLoser_logout' %}">
+			{% csrf_token %}
+			{{ form }}
+			<input class="btn btn-primary" type="submit" value="Logout" />
+			<input type="hidden" name="next" value="{{ next }}" />
+</form>

@@ -16,10 +16,17 @@ def index(request):
 		return redirect('bigLoser_login')
 
 def user_homepage(request, user_id):
-	latest_weight_list = Weight.objects.filter(contestant=user_id).order_by('-current_date')[:5]
+	contestant_list = Contestant.objects.filter(user=user_id).order_by('contest')
 	user = User.objects.get(id=user_id)
-	context = {'latest_weight_list': latest_weight_list, 'user': user}
+	context = {'user': user, 'contestant_list': contestant_list}
 	return render(request, 'bigLoser/user_homepage.html', context)
+
+def contestant_homepage(request, contestant_id):
+	latest_weight_list = Weight.objects.filter(contestant=contestant_id).order_by('-current_date')[:5]
+	contestant = Contestant.objects.get(id=contestant_id)
+	user = contestant.user
+	context = {'latest_weight_list': latest_weight_list, 'user': user}
+	return render(request, 'bigLoser/contestant_homepage.html', context)
 
 def admin_homepage(request):
 	return render(request, 'bigLoser/admin_homepage.html')
