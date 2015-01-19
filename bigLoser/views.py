@@ -25,7 +25,7 @@ def contestant_homepage(request, contestant_id):
 	latest_weight_list = Weight.objects.filter(contestant=contestant_id).order_by('-current_date')[:5]
 	contestant = Contestant.objects.get(id=contestant_id)
 	user = contestant.user
-	context = {'latest_weight_list': latest_weight_list, 'user': user}
+	context = {'latest_weight_list': latest_weight_list, 'user': user, 'contestant': contestant}
 	return render(request, 'bigLoser/contestant_homepage.html', context)
 
 def admin_homepage(request):
@@ -41,10 +41,9 @@ class ContestCreate(CreateView):
 	fields = ['name','start_date','end_date']
 	success_url = reverse_lazy('index')
 
-def render_chart(request, user_id):
+def render_chart(request, contestant_id):
     if request.method == "GET":
         series_age = datetime.today() - timedelta(days=90)
-        contestant_id = user_id
         qset = Weight.objects\
         	.filter(current_date__gt=series_age, contestant__exact=contestant_id)\
         	.values("current_date", "current_weight")

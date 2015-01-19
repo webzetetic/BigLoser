@@ -9,12 +9,12 @@
 		<li><ul>
 		<li>Date: {{ weight.current_date }}</li>
 		<li>Weight: {{ weight.current_weight }}</li>
-		<li>Progress: {{ weight.goal_progress }}</li>
+		<li>Progress: {{ weight.goal_progress_str }}</li>
 		</ul></li>
 	{% endfor %}
 	</ul>
 
-<a href="{% url 'render_chart' user.id %}">Progress Chart</a>
+<a href="{% url 'render_chart' contestant.id %}">Progress Chart</a>
 
 {% else %}
 	
