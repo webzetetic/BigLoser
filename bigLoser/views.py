@@ -15,6 +15,11 @@ def index(request):
 	else:
 		return redirect('bigLoser_login')
 
+class ContestantCreate(CreateView):
+	model = Contestant
+	fields = ['user', 'contest', 'target_weight']
+	success_url = reverse_lazy('index')
+
 def user_homepage(request, user_id):
 	contestant_list = Contestant.objects.filter(user=user_id).order_by('contest')
 	user = User.objects.get(id=user_id)

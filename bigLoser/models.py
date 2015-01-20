@@ -16,7 +16,7 @@ class Contestant(models.Model):
     contest = models.ForeignKey(Contest)
     target_weight = models.IntegerField(default=0)
     def __str__(self):              # __unicode__ on Python 2
-        return "%s in %s contest" % (self.user, self.contest)
+        return "%s -- %s contest" % (self.user, self.contest)
 
 def gen_default_contestant():
         contestantList=Contestant.objects.all()

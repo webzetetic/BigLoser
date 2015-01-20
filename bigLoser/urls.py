@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     url(r'^(?P<user_id>\d+)/$', views.user_homepage, name ='user_homepage'),
     url(r'^admin_homepage/$', views.admin_homepage, name ='admin_homepage'),
  	url(r'^contest/add/$', views.ContestCreate.as_view(), name='contest_add'),
+ 	url(r'^contestant/add/$', views.ContestantCreate.as_view(), name='contestant_add'),
  	url(r'^contestant/(?P<contestant_id>\d+)/$', views.contestant_homepage, name='contestant_homepage')
 )
 

@@ -1,6 +1,11 @@
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
 <h1>Biggest Loser</h1>
 
-<h2>Welcome, {{ user.first_name }}!</h2>
+<h2>Welcome!</h2>
 
 {% if contestant_list %}
 	
@@ -12,7 +17,8 @@
 
 {% else %}
 	
-	<p>No contestants are available.</p>
+	<p>You haven't joined any contests.</p>
+	<a href="{% url 'contestant_add' %}">Join a contest!</a>
 
 {% endif %}
 
