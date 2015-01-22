@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponse
-from bigLoser.models import Weight, Contest, Contestant
+from bigLoser.models import Weight, Contest, Contestant, find_active_contests
 from django.views.generic.edit import CreateView
 from django.core.urlresolvers import reverse_lazy
 from django.template.context import RequestContext
@@ -33,8 +33,12 @@ def admin_homepage(request):
 
 class ContestantCreate(CreateView):
 	model = Contestant
-	fields = ['user', 'contest', 'target_weight']
+	fields = ['target_weight']
 	success_url = reverse_lazy('index')
+	def form_valid(self,form):
+		form.instance.user = self.request.user
+		form.instance.contest = find_active_contests()[0]
+		return super(ContestantCreate,self).form_valid(form)
 
 class WeightCreate(CreateView):
 	model = Weight

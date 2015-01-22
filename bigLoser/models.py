@@ -11,6 +11,9 @@ class Contest(models.Model):
     def __str__(self):              # __unicode__ on Python 2
         return "%s" % (self.name)
 
+def find_active_contests():
+    return Contest.objects.filter(start_date__lt=datetime.now,end_date__gt=datetime.now).order_by('-end_date')
+
 class Contestant(models.Model):
     user = models.ForeignKey(User)
     contest = models.ForeignKey(Contest)
@@ -19,14 +22,14 @@ class Contestant(models.Model):
         return "%s -- %s contest" % (self.user, self.contest)
 
 def gen_default_contestant():
-        contestantList=Contestant.objects.all()
-        if len(contestantList) > 0: return contestantList[0].id
-        return None
+    contestantList=Contestant.objects.all()
+    if len(contestantList) > 0: return contestantList[0].id
+    return None
 
 class Weight(models.Model):    
     objects = GChartsManager()
     current_weight = models.IntegerField(default=0)
-    current_date = models.DateTimeField(default=datetime.now)
+    current_date = models.DateField(default=datetime.now)
     contestant = models.ForeignKey(Contestant,
     	unique_for_date="current_date",
     	default=gen_default_contestant)
