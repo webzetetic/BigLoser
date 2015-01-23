@@ -29,7 +29,7 @@ def gen_default_contestant():
 class Weight(models.Model):    
     objects = GChartsManager()
     current_weight = models.IntegerField(default=0)
-    current_date = models.DateField(default=datetime.now)
+    current_date = models.DateField(default=datetime.today)
     contestant = models.ForeignKey(Contestant,
     	unique_for_date="current_date",
     	default=gen_default_contestant)

@@ -42,8 +42,11 @@ class ContestantCreate(CreateView):
 
 class WeightCreate(CreateView):
 	model = Weight
-	fields = ['contestant','current_date','current_weight']
+	fields = ['current_date','current_weight']
 	success_url = reverse_lazy('index')
+	def form_valid(self,form):
+		form.instance.contestant = Contestant.objects.get(id=self.kwargs['contestant_id'])
+		return super(WeightCreate,self).form_valid(form)
 
 class ContestCreate(CreateView):
 	model = Contest
