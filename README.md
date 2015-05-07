@@ -8,13 +8,6 @@ Run this to sync db changes with Heroku:
 heroku run python manage.py syncdb
 ```
 
-Add to venv/bin/activate file to use SQLite for dev
-
-```
-DATABASE_URL="sqlite:////Users/thall/Projects/BigLoser/db.sqlite3"
-export DATABASE_URL
-```
-
 ### Getting Started
 
 1. Clone the repository.
