@@ -1,13 +1,5 @@
 # Biggest Loser App
 
-## Dev Notes
-
-Run this to sync db changes with Heroku:
-
-```
-heroku run python manage.py syncdb
-```
-
 ### Getting Started
 
 1. Clone the repository.
