@@ -17,6 +17,11 @@ Run this to sync db changes with Heroku:
 heroku run python manage.py syncdb
 ```
 
+App homepage on Heroku:
+```
+https://vast-mesa-4779.herokuapp.com/bigLoser/login/
+```
+
 ## Requirements
 
 * Administrator Interface
