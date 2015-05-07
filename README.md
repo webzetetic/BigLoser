@@ -15,6 +15,23 @@ DATABASE_URL="sqlite:////Users/thall/Projects/BigLoser/db.sqlite3"
 export DATABASE_URL
 ```
 
+### Getting Started
+
+1. Clone the repository.
+2. `createdb bigloser`
+3. In virtual environment `bin/activate` script, add `export DATABASE_URL="postgres://USER:PASSWORD@HOST:PORT/bigloser"`
+3. `python manage.py migrate`
+4. `python manage.py createsuperuser`
+5. `python manage.py runserver`
+
+## Production Notes
+
+Run this to sync db changes with Heroku:
+
+```
+heroku run python manage.py syncdb
+```
+
 ## Requirements
 
 * Administrator Interface
