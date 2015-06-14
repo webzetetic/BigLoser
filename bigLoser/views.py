@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.template.context import RequestContext
 from datetime import timedelta, datetime
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 def index(request):
 	if request.user.id == 1:
@@ -31,6 +32,10 @@ def contestant_homepage(request, contestant_id):
 def admin_homepage(request):
 	return render(request, 'bigLoser/admin_homepage.html')
 
+def is_weight_on_day(date, contestant):
+	weight_list = Weight.objects.filter(contestant=contestant.id, current_date=date)
+	return len(weight_list) > 0
+
 class ContestantCreate(CreateView):
 	model = Contestant
 	fields = ['target_weight']
@@ -42,8 +47,15 @@ class ContestantCreate(CreateView):
 
 class WeightCreate(CreateView):
 	model = Weight
-	fields = ['contestant','current_date','current_weight']
+	fields = ['current_date','current_weight']
 	success_url = reverse_lazy('index')
+	def form_valid(self,form):
+		form.instance.contestant = Contestant.objects.get(id=int(self.kwargs['contestant_id']))
+		if is_weight_on_day(form.instance.current_date, form.instance.contestant):
+			error = ValidationError(('A weight already exists for this contestant on this date.'), code='invalid')
+			form.add_error('current_date', error)
+			return super(WeightCreate,self).form_invalid(form)
+		return super(WeightCreate,self).form_valid(form)
 
 class ContestCreate(CreateView):
 	model = Contest
