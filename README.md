@@ -22,6 +22,11 @@ App homepage on Heroku:
 https://vast-mesa-4779.herokuapp.com/bigLoser/login/
 ```
 
+Update Heroku:
+```
+git push heroku master
+```
+
 ## Requirements
 
 * Administrator Interface
