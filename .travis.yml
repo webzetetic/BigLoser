@@ -2,11 +2,12 @@ language: python
 python:
 - '2.7'
 install: pip install -r requirements-dev.txt
+script: echo This line intentionally left blank
 deploy:
   provider: heroku
   api_key:
     secure: UtJTYej9QK9jE2vyIWpwqWQ10RbvYqk5BfX1xR7mJL3UY2I4Si6hh+Wvo9bfaCNLB/ZUNyzPoZ4VJaJMm9KyUzdRGzjE+1oZUEXkM4ThAJrZalXthtk7U2D+hZCFgy8u42yRu+UpcA8uAdKXWe/A698VWqhvuDpT5DH7qC9HpWRx/5uQEhCUQmHp6aHiwrsENGRHLg6dzSJlgjeQIZuhI18RKsRj50drPeT6AO0OWVvPZ/3PgpdpkADzX9g8Mh07mxATrARjthb3Coz7POrsEcUEHSEstVyLr7h3C+AxT0QM/iY6LQ5zWZunB5mSd3ZCPkRZ9vwYVAo+TXMtGQ2XQaCk2VAmaiJPVfcgqVb3+TFNs+sgXW2MJodu4SKkO+5lGRTHsn2OLLRpQxoRRzM0Lc356FaWpGgOdxbvKnsWtVMgP93n7kDNrA8SMCU9Tc1YJ5Bd18yGgD8XcXRhIG5Xl/jLPXPtk7DAz/lfhJGIzkjUxIhqKMtzGPi5WCaHEb3uEw0tXKVeIiRp05Yb7QdmPUPMqzc2nxPmre1UuT/oiCNIDHVPeIRiLxtPmY0auv3QvYAfbVYT9GQDL/2Hpjal+5OdIMB4Od/D8kMamu2+d7FeXHPNUNSLlZXSFJdfrxmMR7xsb0jy2+a4CMvRDhCLMH9DQoh/vRcU1A0T6hFPDiw=
-  app: BigLoser
+  app: vast-mesa-4779
   on:
     repo: webzetetic/BigLoser
 after_deploy:
