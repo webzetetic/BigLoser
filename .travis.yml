@@ -10,6 +10,6 @@ deploy:
   app: vast-mesa-4779
   on:
     repo: webzetetic/BigLoser
-  clean_up: false
+  skip_cleanup: true
 after_deploy:
     - ./py.test
