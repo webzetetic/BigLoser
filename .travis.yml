@@ -2,7 +2,7 @@ language: python
 python:
 - '2.7'
 install: pip install -r requirements-dev.txt
-script: echo This line intentionally left blank
+script: echo "This line intentionally left blank"
 deploy:
   provider: heroku
   api_key:
