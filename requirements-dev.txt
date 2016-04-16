@@ -1,0 +1,7 @@
+# Runtime Requirements
+
+--requirement requirements.txt
+
+# Testing
+pytest==2.9.1
+requests==2.9.1
